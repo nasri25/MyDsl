@@ -39,7 +39,7 @@ public class MyDslInjectorProvider  implements IInjectorProvider, IRegistryConfi
 	protected MyDslRuntimeModule createRuntimeModule() {
 		// make it work also with Maven/Tycho and OSGI
 		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=493672
-		return new MyDslRuntimeModule() {
+		return new MyDslRuntimeModuleWithGen() {
 			@Override
 			public ClassLoader bindClassLoaderToInstance() {
 				return MyDslInjectorProvider.class
