@@ -1,0 +1,25 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+
+SchoolModel returns SchoolModel:
+	schools+=School*;
+
+School returns School:
+	'school' name=STRING
+	'{'
+		persons+=Person*
+	'}';
+
+Person returns Person:
+	Student | Teacher;
+
+Student returns Student:
+	'student' name=STRING 'registrationNum' registrationNum=INT 
+	('{'
+		teachers+=[Teacher|STRING] ( "," teachers+=[Teacher|STRING])*
+	'}')?;
+
+Teacher returns Teacher:
+	'teacher' name=STRING;
